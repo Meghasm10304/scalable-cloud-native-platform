@@ -153,19 +153,19 @@ resource "aws_route_table_association" "private_b" {
 # -----------------------------------------------------------------------------
 
 resource "aws_security_group" "security_hub" {
-  name        = "sg-security-hub"
-  description = "Staging area for admin IPs — updated by pipeline, never inline rules"
+  name        = "security-hub"
+  description = "Staging area for admin IPs - updated by pipeline, never inline rules"
   vpc_id      = aws_vpc.app.id
 
   tags = {
-    Name    = "sg-security-hub"
+    Name    = "security-hub"
     Project = "cloud-native-platform"
   }
 }
 
 resource "aws_security_group" "web" {
-  name        = "sg-web"
-  description = "HTTP(S) entrypoint — allows HTTP from internet"
+  name        = "web"
+  description = "HTTP(S) entrypoint - allows HTTP from internet"
   vpc_id      = aws_vpc.app.id
 
   ingress {
@@ -183,14 +183,14 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name    = "sg-web"
+    Name    = "web"
     Project = "cloud-native-platform"
   }
 }
 
 resource "aws_security_group" "app" {
-  name        = "sg-app"
-  description = "App tier — accepts traffic only from sg-web"
+  name        = "app"
+  description = "App tier - accepts traffic only from web"
   vpc_id      = aws_vpc.app.id
 
   ingress {
@@ -215,7 +215,7 @@ resource "aws_security_group" "app" {
   }
 
   tags = {
-    Name    = "sg-app"
+    Name    = "app"
     Project = "cloud-native-platform"
   }
 }
