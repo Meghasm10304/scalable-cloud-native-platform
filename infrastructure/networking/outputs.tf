@@ -52,3 +52,13 @@ output "sg_app_id" {
   description = "App SG ID"
   value       = aws_security_group.app.id
 }
+
+output "iam_role_arn" {
+  description = "ARN of the EC2 instance role"
+  value       = aws_iam_role.app_instance.arn
+}
+
+output "instance_profile_name" {
+  description = "Instance profile name to reference in Stage 4 EC2 launch template"
+  value       = aws_iam_instance_profile.app_instance.name
+}
