@@ -21,3 +21,21 @@ variable "key_name" {
   type        = string
   default     = "my-cine-key"
 }
+
+variable "tmdb_api_key" {
+  description = "TMDB API Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "lastfm_api_key" {
+  description = "Last.fm API Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "environment" {
+  description = "Environment name used for resource naming"
+  type        = string
+  default     = "learning"
+}

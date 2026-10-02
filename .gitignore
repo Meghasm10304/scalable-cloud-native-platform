@@ -8,3 +8,4 @@ node_modules/
 *.tfstate.backup
 *.tfvars
 crash.log
+terraform.tfvars
