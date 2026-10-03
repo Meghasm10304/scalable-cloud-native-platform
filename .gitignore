@@ -9,4 +9,5 @@ node_modules/
 *.tfvars
 crash.log
 terraform.tfvars
-server.js.bak
+server.js.bakserver.js.bak
+*.bak
