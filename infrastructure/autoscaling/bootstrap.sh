@@ -13,18 +13,16 @@ echo "Started at: $(date)"
 # 1. Update system packages
 # -----------------------------------------------------------------------------
 echo "[1/5] Updating system packages..."
-yum update -y
-
+apt update && apt upgrade -y
 # -----------------------------------------------------------------------------
 # 2. Install Node.js 20.x (LTS)
 # -----------------------------------------------------------------------------
 echo "[2/5] Installing Node.js 20.x..."
-curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
-yum install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
 
 echo "Node.js version: $(node --version)"
 echo "npm version: $(npm --version)"
-
 # -----------------------------------------------------------------------------
 # 3. Install PM2 globally
 # -----------------------------------------------------------------------------
