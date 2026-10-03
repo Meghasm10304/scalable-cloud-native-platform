@@ -11,15 +11,6 @@ let API_KEY = '';
 let LASTFM_KEY = '';
 
 async function loadSecrets() {
-    // If USE_ENV_SECRETS is set, read config from environment variables.
-    // Used in Docker and Kubernetes (Stage 12). On EC2 this stays unset,
-    // so behavior is unchanged and Secrets Manager is still used.
-    if (process.env.USE_ENV_SECRETS === 'true') {
-        API_KEY = process.env.TMDB_API_KEY || '';
-        LASTFM_KEY = process.env.LASTFM_KEY || '';
-        console.log('Secrets loaded from environment variables');
-        return;
-    }
     const client = new SecretsManagerClient({ region: "ap-south-1" });
     try {
         const data = await client.send(new GetSecretValueCommand({ SecretId: "cinesangeet/app-config-v2" }));
