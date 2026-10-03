@@ -13,6 +13,7 @@ spec:
       labels:
         app: cine-sangeet
     spec:
+      serviceAccountName: cine-sangeet-sa   # <--- ADD THIS LINE
       containers:
         - name: cine-sangeet
           image: meghasm10304/cinesangeet:v3
