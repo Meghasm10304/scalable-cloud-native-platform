@@ -35,6 +35,38 @@ async function loadSecrets() {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// --- Prometheus Metrics (Stage 17) ---
+const client = require('prom-client');
+const register = client.register;
+client.collectDefaultMetrics({ register });
+
+const httpRequestCounter = new client.Counter({
+    name: 'http_requests_total',
+    help: 'Total number of HTTP requests',
+    labelNames: ['method', 'path', 'status_code']
+});
+
+app.get('/metrics', async (req, res) => {
+    try {
+        res.set('Content-Type', register.contentType);
+        res.end(await register.metrics());
+    } catch (err) {
+        res.status(500).end(err.message);
+    }
+});
+
+app.use((req, res, next) => {
+    res.on('finish', () => {
+        httpRequestCounter.inc({
+            method: req.method,
+            path: req.path,
+            status_code: String(res.statusCode)
+        });
+    });
+    next();
+});
+// --- End Prometheus Metrics ---
+
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString(), secretsLoaded: !!API_KEY });
 });
@@ -242,7 +274,9 @@ app.get('/api/search-songs', async (req, res) => {
 
 // Start server ONLY after secrets are loaded
 (async () => {
+
     await loadSecrets();
+
     app.listen(PORT, () => {
         console.log('CineSangeet running at http://localhost:' + PORT);
     });
