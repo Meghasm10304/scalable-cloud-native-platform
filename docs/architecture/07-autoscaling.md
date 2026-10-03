@@ -66,17 +66,3 @@ Symptom: target group listed instances that were no longer ASG members (draining
 Cause: manual register-targets earlier + terminated instances mid-deregistration.
 Fix: aws elbv2 deregister-targets for stale IDs; ASG auto-manages its own members.
 Lesson: never manually register targets on an ASG-managed target group — the ASG owns them.
-
-## 🎤 Interview questions
-1. Why attach the target group to the ASG instead of registering instances manually?
-   → ASG owns instance lifecycle; manual registrations get removed and cause drift.
-2. Difference between EC2 health check and ELB health check in an ASG?
-   → EC2 checks hypervisor/instance state only; ELB checks the app responds on the path/port.
-3. Why is health_check_grace_period important?
-   → Prevents the ASG killing an instance while user_data is still installing the app.
-4. How do you make an ASG highly available?
-   → Multiple subnets across AZs in vpc_zone_identifier, min >= 2, ELB health checks.
-5. How do you roll out a config change to all instances without downtime?
-   → Update launch template, then start-instance-refresh (rolling, respects min capacity).
-6. What happens if an AZ fails?
-   → ASG detects unhealthy instances and launches replacements in remaining AZs; ALB stops routing to failed AZ.
