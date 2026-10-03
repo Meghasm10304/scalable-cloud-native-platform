@@ -11,3 +11,4 @@ crash.log
 terraform.tfvars
 server.js.bakserver.js.bak
 *.bak
+minikube-windows-amd64.exe
