@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cine-sangeet
+  namespace: cine-sangeet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cine-sangeet
+  template:
+    metadata:
+      labels:
+        app: cine-sangeet
+    spec:
+      containers:
+        - name: cine-sangeet
+          image: meghasm10304/cinesangeet:v3
+          ports:
+            - containerPort: 3000
+          env:
+            - name: USE_ENV_SECRETS
+              value: "true"
+            - name: TMDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cine-sangeet-secrets
+                  key: TMDB_API_KEY
+            - name: LASTFM_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cine-sangeet-secrets
+                  key: LASTFM_KEY
