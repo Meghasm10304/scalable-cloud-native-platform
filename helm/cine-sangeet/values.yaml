@@ -1,0 +1,20 @@
+replicaCount: 2
+
+image:
+  repository: meghasm10304/cinesangeet
+  tag: v3
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 3000
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "100m"
+  limits:
+    memory: "128Mi"
+    cpu: "250m"
+
+namespace: cine-sangeet

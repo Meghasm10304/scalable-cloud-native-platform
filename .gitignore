@@ -12,3 +12,5 @@ terraform.tfvars
 server.js.bakserver.js.bak
 *.bak
 minikube-windows-amd64.exe
+*.tar.gz
+windows-amd64/
