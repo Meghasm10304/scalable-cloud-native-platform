@@ -13,7 +13,7 @@ let LASTFM_KEY = '';
 async function loadSecrets() {
     const client = new SecretsManagerClient({ region: "ap-south-1" });
     try {
-        const data = await client.send(new GetSecretValueCommand({ SecretId: "cinesangeet/app-config" }));
+        const data = await client.send(new GetSecretValueCommand({ SecretId: "cinesangeet/app-config-v2" }));
         const secrets = JSON.parse(data.SecretString);
         API_KEY = secrets.TMDB_API_KEY;
         LASTFM_KEY = secrets.LASTFM_KEY || '';
