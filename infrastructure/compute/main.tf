@@ -47,31 +47,6 @@ data "aws_security_group" "app" {
 }
 
 # -----------------------------------------------------------------------------
-# EC2 Instance — Stage 4
-# -----------------------------------------------------------------------------
-
-resource "aws_instance" "cinesangeet_server" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = data.aws_subnet.public_a.id
-  vpc_security_group_ids = [data.aws_security_group.app.id]
-  key_name               = var.key_name
-  iam_instance_profile   = data.aws_iam_instance_profile.app_instance.name
-
-  root_block_device {
-    volume_size = 8
-    volume_type = "gp3"
-  }
-
-  # This is the output you'll use for SSH
-  tags = {
-    Name    = "cinesangeet-server"
-    Stage   = "4"
-    Project = "cloud-native-platform"
-  }
-}
-
-# -----------------------------------------------------------------------------
 # Secret for Application Credentials
 # -----------------------------------------------------------------------------
 resource "aws_secretsmanager_secret" "app_config" {
