@@ -1,3 +1,4 @@
+#compute
 terraform {
   required_version = ">= 1.5.0"
 
@@ -38,10 +39,10 @@ data "aws_subnet" "public_a" {
   }
 }
 
-data "aws_security_group" "web" {
+data "aws_security_group" "app" {
   filter {
     name   = "tag:Name"
-    values = ["web"]
+    values = ["app"]
   }
 }
 
@@ -53,7 +54,7 @@ resource "aws_instance" "cinesangeet_server" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   subnet_id              = data.aws_subnet.public_a.id
-  vpc_security_group_ids = [data.aws_security_group.web.id]
+  vpc_security_group_ids = [data.aws_security_group.app.id]
   key_name               = var.key_name
   iam_instance_profile   = data.aws_iam_instance_profile.app_instance.name
 
