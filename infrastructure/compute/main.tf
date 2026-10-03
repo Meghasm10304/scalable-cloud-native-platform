@@ -74,7 +74,7 @@ resource "aws_instance" "cinesangeet_server" {
 # Secret for Application Credentials
 # -----------------------------------------------------------------------------
 resource "aws_secretsmanager_secret" "app_config" {
-  name        = "cinesangeet/app-config"
+  name        = "cinesangeet/app-config-v2"
   description = "Application secrets for CineSangeet"
 
   tags = {
