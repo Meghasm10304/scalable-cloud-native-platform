@@ -13,7 +13,7 @@ spec:
       labels:
         app: cine-sangeet
     spec:
-      serviceAccountName: cine-sangeet-sa   # <--- ADD THIS LINE
+      serviceAccountName: cine-sangeet-sa
       containers:
         - name: cine-sangeet
           image: meghasm10304/cinesangeet:v3
@@ -32,3 +32,29 @@ spec:
                 secretKeyRef:
                   name: cine-sangeet-secrets
                   key: LASTFM_KEY
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          startupProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 12
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
