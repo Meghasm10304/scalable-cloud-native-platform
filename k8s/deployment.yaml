@@ -16,7 +16,7 @@ spec:
       serviceAccountName: cine-sangeet-sa
       containers:
         - name: cine-sangeet
-          image: meghasm10304/cinesangeet:v3
+          image: meghasm10304/cinesangeet:v5
           ports:
             - containerPort: 3000
           env:
