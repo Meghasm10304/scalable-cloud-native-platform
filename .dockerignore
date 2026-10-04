@@ -7,5 +7,3 @@ docs/
 infrastructure/
 Dockerfile
 .dockerignore
-public/*
-!public/
