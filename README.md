@@ -66,7 +66,7 @@ This project demonstrates how an application evolves from a **single-server depl
 
 ##  Tech Stack
 
-`AWS` · `Terraform (HCL)` · `JavaScript/Node.js` · `Docker` · `Kubernetes` · `Helm` · `Argo CD` · `Prometheus` · `Grafana` · `Loki` · `Alertmanager` · `GitHub Actions` · `Bash`
+`AWS` · `Terraform (HCL)` · `JavaScript/Node.js` · `Docker` · `Kubernetes` · `Helm` · `Argo CD` · `Prometheus` · `Grafana` · `Alertmanager` · `Bash`
 
 ---
 
