@@ -95,9 +95,15 @@ Copy
 # Install dependencies
 npm install
 
-# Start the application
-node server.js
-# App available at http://localhost:3000 | Metrics at /metrics
+Deploy to Kubernetes (via Helm)
+bash
+
+Copy
+helm install cine-sangeet ./helm/cine-sangeet
+kubectl get pods -w
+Access via AWS Load Balancer
+The application is accessible through the AWS ALB
+
 Build & Run Container
 bash
 
