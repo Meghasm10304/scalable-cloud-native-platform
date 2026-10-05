@@ -18,7 +18,7 @@ This project demonstrates how an application evolves from a **single-server depl
 | Too many containers to manage manually | Kubernetes |
 | YAML sprawl | Helm |
 | Configuration drift between Git & cluster | Argo CD (GitOps) |
-| "It works" ≠ "It's healthy" | Prometheus / Grafana / Loki / Alertmanager |
+| "It works" ≠ "It's healthy" | Prometheus / Grafana / Alertmanager |
 
 **Core philosophy:** Don't just use the tool — understand *why* it exists.
 
