@@ -20,8 +20,6 @@ This project demonstrates how an application evolves from a **single-server depl
 | Configuration drift between Git & cluster | Argo CD (GitOps) |
 | "It works" ≠ "It's healthy" | Prometheus / Grafana / Alertmanager |
 
-**Core philosophy:** Don't just use the tool — understand *why* it exists.
-
 ---
 
 ##  Architecture Phases
@@ -58,9 +56,7 @@ This project demonstrates how an application evolves from a **single-server depl
 ### Phase 6 — Observability
 - **Prometheus** — metric collection (app + cluster)
 - **Grafana** — dashboards
-- **Loki** — centralized logging
 - **Alertmanager** — alert rules & notifications
-- **OpenTelemetry** — tracing concepts
 
 ---
 
