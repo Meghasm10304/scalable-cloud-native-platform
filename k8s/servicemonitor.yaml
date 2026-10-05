@@ -3,11 +3,16 @@ kind: ServiceMonitor
 metadata:
   name: cine-sangeet
   namespace: monitoring
+  labels:
+    release: prometheus
 spec:
   selector:
     matchLabels:
-      app: cine-sangeet
+      app.kubernetes.io/instance: cine-sangeet
+  namespaceSelector:
+    matchNames:
+      - cine-sangeet
   endpoints:
-  - port: http
-    path: /metrics
-    interval: 30s
+    - port: metrics
+      path: /metrics
+      interval: 30s
